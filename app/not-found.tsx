@@ -1,4 +1,6 @@
 import Link from "next/link";
+import Image from "next/image";
+
 export default function NotFound() {
     return (
         <div className="w-screen h-screen flex items-center justify-center bg-gradient-to-br from-purple-950 via-black to-blue-950 dark:from-black dark:via-purple-950 dark:to-blue-950">
@@ -33,14 +35,14 @@ export default function NotFound() {
                 {/* Правая часть: картинка с размытым фоном и мягкими краями */}
                 <div className="relative flex items-center justify-center bg-neutral-900 md:w-1/2 w-full h-full p-0 overflow-hidden">
                     {/* Размытый фон из той же картинки */}
-                    <img
+                    <Image
                         src="/404.webp"
                         alt="404 blurred background"
                         className="absolute inset-0 w-full h-full object-cover scale-125 blur-2xl opacity-60 select-none pointer-events-none"
                         aria-hidden="true"
                     />
                     {/* Основная картинка с мягкими краями */}
-                    <img
+                    <Image
                         src="/404.webp"
                         alt="404 cat hoodie"
                         className="relative z-10 max-h-[95vh] max-w-[95%] object-contain mx-auto"

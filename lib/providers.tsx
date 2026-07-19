@@ -13,6 +13,7 @@ export const Providers: React.FC<React.PropsWithChildren> = ({ children }) => {
                 defaultTheme="system"
                 enableSystem
                 disableTransitionOnChange
+                storageKey="kc-theme"
             >
                 {children}
             </ThemeProvider>

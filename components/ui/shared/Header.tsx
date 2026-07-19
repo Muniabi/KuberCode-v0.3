@@ -3,12 +3,12 @@
 import { cn } from "@/lib/utils";
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
+import { Container } from "@/components/ui/container";
 // import { Container, AccountButton } from "./index";
 // import { Link, useLocation } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { Menu, X, Code2 } from "lucide-react";
-import { Container } from "@/components/ui/container";
+import { Menu, Code2 } from "lucide-react";
 
 const NAV_ITEMS = [
     { href: "/", label: "Главная" },
@@ -53,7 +53,7 @@ export const Header: React.FC<Props> = ({ className }) => {
                                 viewBox="0 0 32 32"
                                 fill="none"
                                 xmlns="http://www.w3.org/2000/svg"
-                                className="w-full h-full text-[var(--purple)]"
+                                className="w-full h-full text-[--purple]"
                             >
                                 <rect
                                     x="4"
@@ -114,19 +114,18 @@ export const Header: React.FC<Props> = ({ className }) => {
                     {/* Desktop nav */}
                     <nav className="hidden md:flex items-center gap-1">
                         {NAV_ITEMS.map((item) => {
-                            // const isActive =
-                            //     item.href === "/"
-                            //         ? pathname === "/"
-                            //         : pathname.startsWith(item.href);
+                            const isActive = item.href === "/";
+                            // ? pathname === "/"
+                            // : pathname.startsWith(item.href);
                             return (
                                 <Link
                                     key={item.href}
                                     href={item.href}
                                     className={cn(
                                         "px-3.5 py-2 rounded-xl text-sm font-medium transition-all",
-                                        // isActive
-                                        //     ? "text-[--purple] bg-[--purple]/10 dark:text-[--lime] dark:bg-[--lime]/10"
-                                        //     : "text-gray-600 dark:text-white/60 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-white/5",
+                                        isActive
+                                            ? "text-[--purple] bg-[--purple]/10 dark:text-[--lime] dark:bg-[--lime]/10"
+                                            : "text-gray-600 dark:text-white/60 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-white/5",
                                     )}
                                 >
                                     {item.label}
@@ -137,16 +136,19 @@ export const Header: React.FC<Props> = ({ className }) => {
 
                     {/* Right: Account + Mobile toggle */}
                     <div className="flex items-center gap-2">
+                        Вход
                         {/* <AccountButton /> */}
-
                         {/* Mobile hamburger */}
                         <div className="md:hidden">
                             <Sheet open={isOpen} onOpenChange={setIsOpen}>
-                                <SheetTrigger
-                                    className="inline-flex h-9 w-9 items-center justify-center rounded-xl text-gray-600 dark:text-white/60 hover:bg-gray-100 dark:hover:bg-white/5"
-                                    aria-label="Open menu"
-                                >
-                                    <Menu className="h-5 w-5" />
+                                <SheetTrigger asChild>
+                                    <Button
+                                        variant="ghost"
+                                        size="icon"
+                                        className="w-9 h-9 rounded-xl text-gray-600 dark:text-white/60 hover:bg-gray-100 dark:hover:bg-white/5"
+                                    >
+                                        <Menu className="h-5 w-5" />
+                                    </Button>
                                 </SheetTrigger>
                                 <SheetContent
                                     side="right"
@@ -159,7 +161,7 @@ export const Header: React.FC<Props> = ({ className }) => {
                                             className="flex items-center gap-2"
                                             onClick={() => setIsOpen(false)}
                                         >
-                                            <Code2 className="w-5 h-5 text-[var(--purple)] dark:text-[var(--lime)]" />
+                                            <Code2 className="w-5 h-5 text-[--purple] dark:text-[--lime]" />
                                             <span className="font-semibold text-gray-900 dark:text-white font-neopixel">
                                                 KuberCode
                                             </span>
@@ -169,10 +171,11 @@ export const Header: React.FC<Props> = ({ className }) => {
                                     {/* Nav links */}
                                     <nav className="flex flex-col p-4 gap-1">
                                         {NAV_ITEMS.map((item) => {
-                                            // const isActive =
-                                            //     item.href === "/"
-                                            //         ? pathname === "/"
-                                            //         : pathname.startsWith(item.href);
+                                            const isActive = item.href === "/";
+                                            // ? pathname === "/"
+                                            // : pathname.startsWith(
+                                            //       item.href,
+                                            //   );
                                             return (
                                                 <Link
                                                     key={item.href}
@@ -182,9 +185,9 @@ export const Header: React.FC<Props> = ({ className }) => {
                                                     }
                                                     className={cn(
                                                         "px-4 py-3 rounded-xl text-base font-medium transition-all",
-                                                        // isActive
-                                                        //     ? "text-[--purple] bg-[--purple]/10 dark:text-[--lime] dark:bg-[--lime]/10"
-                                                        //     : "text-gray-700 dark:text-white/70 hover:bg-gray-100 dark:hover:bg-white/5",
+                                                        isActive
+                                                            ? "text-[--purple] bg-[--purple]/10 dark:text-[--lime] dark:bg-[--lime]/10"
+                                                            : "text-gray-700 dark:text-white/70 hover:bg-gray-100 dark:hover:bg-white/5",
                                                     )}
                                                 >
                                                     {item.label}
@@ -198,9 +201,10 @@ export const Header: React.FC<Props> = ({ className }) => {
                                         <Link
                                             href="/tracks"
                                             onClick={() => setIsOpen(false)}
-                                            className="block w-full rounded-xl bg-[var(--purple)] dark:bg-[var(--lime)] px-4 py-3 text-center font-medium text-white dark:text-black transition hover:opacity-90"
                                         >
-                                            Начать обучение
+                                            <Button className="w-full rounded-xl bg-[--purple] dark:bg-[--lime] text-white dark:text-black hover:opacity-90">
+                                                Начать обучение
+                                            </Button>
                                         </Link>
                                     </div>
                                 </SheetContent>

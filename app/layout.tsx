@@ -5,6 +5,7 @@ import { cn } from "@/lib/utils";
 // import { Footer } from "@/components/shared/index";
 import { Providers } from "@/lib/providers";
 import { Header } from "@/components/ui/shared/Header";
+import { JetBrains_Mono } from "next/font/google";
 
 const geistSans = localFont({
     src: "./fonts/GeistVF.woff",
@@ -12,11 +13,7 @@ const geistSans = localFont({
     display: "swap",
 });
 
-const geistMono = localFont({
-    src: "./fonts/GeistMonoVF.woff",
-    variable: "--font-mono",
-    display: "swap",
-});
+const jetbrainsMono = JetBrains_Mono({subsets:['latin'],variable:'--font-mono'});
 
 const neopixel = localFont({
     src: "./fonts/Neopixel - Templatica.pro.woff2",
@@ -93,14 +90,19 @@ export default function RootLayout({
     children: React.ReactNode;
 }>) {
     return (
-        <html lang="ru" suppressHydrationWarning>
+        <html lang="ru" suppressHydrationWarning className={cn("font-mono", jetbrainsMono.variable)}>
             <body
                 className={cn(
                     geistSans.variable,
-                    geistMono.variable,
+                    jetbrainsMono.variable,
                     neopixel.variable,
                 )}
             >
+                <script
+                    dangerouslySetInnerHTML={{
+                        __html: `;(function(){try{var k='kc-theme';var v=localStorage.getItem(k);var valid=['dark','light','system'];if(!valid.includes(v)){localStorage.setItem(k,'dark');v='dark';}if(v==='system'){try{var m=window.matchMedia('(prefers-color-scheme: dark)');if(m.matches)document.documentElement.classList.add('dark');}catch(e){}}else if(v==='dark'){document.documentElement.classList.add('dark');}else{document.documentElement.classList.remove('dark');}}catch(e){} })();`,
+                    }}
+                />
                 <Providers>
                     <Header />
                     {children}

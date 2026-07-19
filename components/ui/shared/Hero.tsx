@@ -14,7 +14,7 @@ export function HeroNew() {
     };
 
     return (
-        <section className="relative min-h-[90vh] flex items-center overflow-hidden bg-[color:var(--bg-color-dark)] dark:bg-[color:var(--bg-color-dark)]">
+        <section className="relative min-h-[90vh] flex items-center overflow-hidden bg-[color:var(--bg-color-light)] dark:bg-[color:var(--bg-color-dark)]">
             {/* Background grid */}
             <div className="absolute inset-0 pointer-events-none">
                 <div
@@ -65,6 +65,7 @@ export function HeroNew() {
                             onClick={handleStartLearning}
                             className="h-14 px-8 rounded-2xl bg-[color:var(--purple)] hover:bg-[color:var(--purple)/0.9] dark:bg-[color:var(--lime)] dark:text-black dark:hover:bg-[color:var(--lime)/0.9] text-white text-base font-semibold gap-2"
                         >
+                            Начать обучение
                             {/* {isAuth ? "Перейти в кабинет" : "Начать обучение"} */}
                             <ArrowRight className="w-4 h-4" />
                         </Button>
