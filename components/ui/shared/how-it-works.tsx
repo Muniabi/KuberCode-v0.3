@@ -8,9 +8,9 @@ const STEPS = [
         title: "Теория",
         description:
             "Короткий концептуальный блок — только самое необходимое. Без воды, без лишних видео.",
-        color: "text-[color:var(--purple)]",
-        bg: "bg-[color:var(--purple)/0.1]",
-        border: "border-[color:var(--purple)/0.2]",
+        color: "text-[var(--purple)]",
+        bg: "bg-purple-400/10",
+        border: "border-purple-400/20",
     },
     {
         icon: Code2,
@@ -18,9 +18,9 @@ const STEPS = [
         title: "Практика",
         description:
             "Пишешь реальный код прямо в браузере. Задания основаны на типичных задачах из работы разработчика.",
-        color: "text-[color:var(--lime)]",
-        bg: "bg-[color:var(--lime)/0.1]",
-        border: "border-[color:var(--lime)/0.2]",
+        color: "text-[var(--lime)]",
+        bg: "bg-lime-400/10",
+        border: "border-lime-400/20",
     },
     {
         icon: TrendingUp,

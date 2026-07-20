@@ -124,7 +124,7 @@ export const Header: React.FC<Props> = ({ className }) => {
                                     className={cn(
                                         "px-3.5 py-2 rounded-xl text-sm font-medium transition-all",
                                         isActive
-                                            ? "text-[--purple] bg-[--purple]/10 dark:text-[--lime] dark:bg-[--lime]/10"
+                                            ? "text-[var(--purple)] bg-[var(--purple)]/10 dark:text-[var(--lime)] dark:bg-[var(--lime)]/10"
                                             : "text-gray-600 dark:text-white/60 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-white/5",
                                     )}
                                 >
@@ -161,7 +161,7 @@ export const Header: React.FC<Props> = ({ className }) => {
                                             className="flex items-center gap-2"
                                             onClick={() => setIsOpen(false)}
                                         >
-                                            <Code2 className="w-5 h-5 text-[--purple] dark:text-[--lime]" />
+                                            <Code2 className="w-5 h-5 text-[var(--purple)] dark:text-[var(--lime)]" />
                                             <span className="font-semibold text-gray-900 dark:text-white font-neopixel">
                                                 KuberCode
                                             </span>
@@ -186,7 +186,7 @@ export const Header: React.FC<Props> = ({ className }) => {
                                                     className={cn(
                                                         "px-4 py-3 rounded-xl text-base font-medium transition-all",
                                                         isActive
-                                                            ? "text-[--purple] bg-[--purple]/10 dark:text-[--lime] dark:bg-[--lime]/10"
+                                                            ? "text-[var(--purple)] bg-[var(--purple)]/10 dark:text-[var(--lime)] dark:bg-[var(--lime)]/10"
                                                             : "text-gray-700 dark:text-white/70 hover:bg-gray-100 dark:hover:bg-white/5",
                                                     )}
                                                 >
@@ -202,7 +202,7 @@ export const Header: React.FC<Props> = ({ className }) => {
                                             href="/tracks"
                                             onClick={() => setIsOpen(false)}
                                         >
-                                            <Button className="w-full rounded-xl bg-[--purple] dark:bg-[--lime] text-white dark:text-black hover:opacity-90">
+                                            <Button className="w-full rounded-xl bg-[var(--purple)] dark:bg-[var(--lime)] text-white dark:text-black hover:opacity-90">
                                                 Начать обучение
                                             </Button>
                                         </Link>

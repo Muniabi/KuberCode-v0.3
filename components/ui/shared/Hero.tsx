@@ -14,7 +14,7 @@ export function HeroNew() {
     };
 
     return (
-        <section className="relative min-h-[90vh] flex items-center overflow-hidden bg-[color:var(--bg-color-light)] dark:bg-[color:var(--bg-color-dark)]">
+        <section className="relative min-h-[90vh] flex items-center overflow-hidden bg-[var(--bg-color-light)] dark:bg-[var(--bg-color-dark)]">
             {/* Background grid */}
             <div className="absolute inset-0 pointer-events-none">
                 <div
@@ -24,8 +24,8 @@ export function HeroNew() {
                         backgroundSize: "60px 60px",
                     }}
                 />
-                <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-[color:var(--purple)/0.1] rounded-full blur-[120px]" />
-                <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-[color:var(--lime)/0.05] rounded-full blur-[100px]" />
+                <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-[var(--purple)/0.1] rounded-full blur-[120px]" />
+                <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-[var(--lime)/0.05] rounded-full blur-[100px]" />
             </div>
 
             <div className="relative z-10 w-full max-w-6xl mx-auto px-6 py-24">
@@ -36,7 +36,7 @@ export function HeroNew() {
                     className="max-w-3xl"
                 >
                     {/* Badge */}
-                    <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[color:var(--purple)/0.3] bg-[color:var(--purple)/0.1] text-[color:var(--purple)] dark:text-[color:var(--lime)] text-sm font-medium mb-8">
+                    <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[var(--purple)/0.3] bg-[var(--purple)/0.1] text-[var(--purple)] dark:text-[var(--lime)] text-sm font-medium mb-8">
                         <Zap className="w-3.5 h-3.5" />
                         Учись через практику
                     </div>
@@ -45,7 +45,7 @@ export function HeroNew() {
                     <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold leading-[1.05] tracking-tight text-gray-900 dark:text-white mb-6">
                         Становись
                         <br />
-                        <span className="text-[color:var(--purple)] dark:text-[color:var(--lime)]">
+                        <span className="text-[var(--purple)] dark:text-[var(--lime)]">
                             разработчиком
                         </span>
                         <br />
@@ -63,7 +63,7 @@ export function HeroNew() {
                         <Button
                             size="lg"
                             onClick={handleStartLearning}
-                            className="h-14 px-8 rounded-2xl bg-[color:var(--purple)] hover:bg-[color:var(--purple)/0.9] dark:bg-[color:var(--lime)] dark:hover:bg-white dark:text-black dark:hover:text-black  text-white text-base font-semibold gap-2 transition-all duration-400 hover:-translate-y-1"
+                            className="h-14 px-8 rounded-2xl bg-[var(--purple)] hover:bg-[var(--purple)/0.9] dark:bg-[var(--lime)] dark:hover:bg-white dark:text-black dark:hover:text-black  text-white text-base font-semibold gap-2 transition-all duration-400 hover:-translate-y-1"
                         >
                             Начать обучение
                             {/* {isAuth ? "Перейти в кабинет" : "Начать обучение"} */}
