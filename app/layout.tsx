@@ -13,7 +13,10 @@ const geistSans = localFont({
     display: "swap",
 });
 
-const jetbrainsMono = JetBrains_Mono({subsets:['latin'],variable:'--font-mono'});
+const jetbrainsMono = JetBrains_Mono({
+    subsets: ["latin"],
+    variable: "--font-mono",
+});
 
 const neopixel = localFont({
     src: "./fonts/Neopixel - Templatica.pro.woff2",
@@ -90,7 +93,11 @@ export default function RootLayout({
     children: React.ReactNode;
 }>) {
     return (
-        <html lang="ru" suppressHydrationWarning className={cn("font-mono", jetbrainsMono.variable)}>
+        <html
+            lang="ru"
+            suppressHydrationWarning
+            className={cn("font-mono", jetbrainsMono.variable)}
+        >
             <body
                 className={cn(
                     geistSans.variable,

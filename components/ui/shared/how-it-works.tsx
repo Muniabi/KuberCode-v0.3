@@ -67,7 +67,7 @@ export function HowItWorks() {
                                 className={`relative h-full rounded-3xl border ${step.border} ${step.bg} p-8 dark:bg-white/[0.02] dark:border-white/5 bg-white border-gray-100`}
                             >
                                 {/* Step number */}
-                                <div className="absolute top-6 right-6 text-5xl font-black text-gray-100 dark:text-white/5 select-none">
+                                <div className="absolute top-6 right-6 text-5xl font-black text-gray-100 dark:text-white/50  select-none">
                                     {step.step}
                                 </div>
 

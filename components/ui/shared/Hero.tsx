@@ -63,7 +63,7 @@ export function HeroNew() {
                         <Button
                             size="lg"
                             onClick={handleStartLearning}
-                            className="h-14 px-8 rounded-2xl bg-[color:var(--purple)] hover:bg-[color:var(--purple)/0.9] dark:bg-[color:var(--lime)] dark:text-black dark:hover:bg-[color:var(--lime)/0.9] text-white text-base font-semibold gap-2"
+                            className="h-14 px-8 rounded-2xl bg-[color:var(--purple)] hover:bg-[color:var(--purple)/0.9] dark:bg-[color:var(--lime)] dark:hover:bg-stone-600 dark:text-black  text-white text-base font-semibold gap-2 transition-all duration-400 hover:-translate-y-1"
                         >
                             Начать обучение
                             {/* {isAuth ? "Перейти в кабинет" : "Начать обучение"} */}
@@ -103,7 +103,7 @@ export function HeroNew() {
                     initial={{ opacity: 0, x: 60 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.7, delay: 0.2 }}
-                    className="absolute right-4 top-1/2 -translate-y-1/2 hidden xl:block w-[420px]"
+                    className="absolute right-4 top-2/3 -translate-y-1/2 hidden xl:block w-[420px]"
                 >
                     <div className="rounded-2xl border border-white/5 bg-white/3 dark:bg-white/[0.03] backdrop-blur-sm overflow-hidden shadow-2xl">
                         <div className="flex items-center gap-2 px-4 py-3 border-b border-white/5 bg-white/5">
