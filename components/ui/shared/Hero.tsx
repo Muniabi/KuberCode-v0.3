@@ -63,7 +63,7 @@ export function HeroNew() {
                         <Button
                             size="lg"
                             onClick={handleStartLearning}
-                            className="h-14 px-8 rounded-2xl bg-[color:var(--purple)] hover:bg-[color:var(--purple)/0.9] dark:bg-[color:var(--lime)] dark:hover:bg-stone-600 dark:text-black  text-white text-base font-semibold gap-2 transition-all duration-400 hover:-translate-y-1"
+                            className="h-14 px-8 rounded-2xl bg-[color:var(--purple)] hover:bg-[color:var(--purple)/0.9] dark:bg-[color:var(--lime)] dark:hover:bg-white dark:text-black dark:hover:text-black  text-white text-base font-semibold gap-2 transition-all duration-400 hover:-translate-y-1"
                         >
                             Начать обучение
                             {/* {isAuth ? "Перейти в кабинет" : "Начать обучение"} */}
@@ -71,7 +71,7 @@ export function HeroNew() {
                         </Button>
                         <button
                             // onClick={() => navigate("/tracks")}
-                            className="h-14 px-8 rounded-2xl border border-gray-200 dark:border-white/10 text-gray-700 dark:text-white/70 hover:bg-gray-100 dark:hover:bg-white/5 text-base gap-2 flex items-center transition-colors"
+                            className="h-14 px-8 rounded-2xl border border-gray-200 dark:border-white/20 text-gray-700 dark:text-white/70 hover:bg-gray-100 dark:hover:bg-white/5 text-base gap-2 flex items-center  transition-all duration-400 hover:-translate-y-1"
                         >
                             <Code2 className="w-4 h-4" />
                             Смотреть треки

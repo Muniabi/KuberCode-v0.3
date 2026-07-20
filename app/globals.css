@@ -1,6 +1,5 @@
 @import "tailwindcss";
 @import "tw-animate-css";
-@import "shadcn/tailwind.css";
 
 @custom-variant dark (.dark &);
 
@@ -126,6 +125,13 @@ body {
     --radius-2xl: calc(var(--radius) * 1.8);
     --radius-3xl: calc(var(--radius) * 2.2);
     --radius-4xl: calc(var(--radius) * 2.6);
+    --bg-color-light: #fafafa;
+    --bg-color-dark: #101011;
+    --lime: #ceff1a;
+    --button-bg: #8948ff;
+    --purple: #8948ff;
+    --yellow: #ffb870;
+    --bg-gray: #434343;
 }
 
 :root {
@@ -267,6 +273,20 @@ body {
     to {
         transform: translateX(100%);
     }
+}
+
+@keyframes searchPulse {
+    0%,
+    100% {
+        transform: scale(1) rotate(0deg);
+    }
+    50% {
+        transform: scale(1.12) rotate(-8deg);
+    }
+}
+
+.animate-search-pulse {
+    animation: searchPulse 2.5s ease-in-out infinite;
 }
 
 * {

@@ -16,12 +16,12 @@ export default function NotFoundPage() {
             >
                 {/* Number */}
                 <div className="relative inline-block mb-6">
-                    <div className="text-[120px] sm:text-[160px] font-black leading-none text-gray-100 dark:text-white/30 select-none">
+                    <div className="text-[240px] sm:text-[180px] font-black leading-none text-gray-100 dark:text-white/30 select-none">
                         404
                     </div>
                     <div className="absolute inset-0 flex items-center justify-center">
-                        <div className="w-16 h-16 rounded-2xl bg-[--purple]/10 dark:bg-[--lime]/10 flex items-center justify-center">
-                            <Search className="w-7 h-7 text-[--purple] dark:text-[--lime]" />
+                        <div className="w-16 h-16 rounded-2xl bg-[var(--purple)]/10 dark:bg-[var(--lime)]/10 flex items-center justify-center">
+                            <Search className="w-7 h-7 text-[var(--purple)] dark:text-[var(--lime)] animate-search-pulse" />
                         </div>
                     </div>
                 </div>
@@ -36,7 +36,7 @@ export default function NotFoundPage() {
 
                 <div className="flex flex-col sm:flex-row gap-3 justify-center">
                     <Link href="/">
-                        <Button className="w-full sm:w-auto rounded-xl bg-[--purple] dark:bg-[--lime] text-white dark:text-black hover:opacity-90 gap-2">
+                        <Button className="w-full sm:w-auto rounded-xl bg-[var(--purple)] dark:bg-[var(--lime)] text-white dark:text-black hover:opacity-90 gap-2">
                             <ArrowLeft className="w-4 h-4" />
                             На главную
                         </Button>
