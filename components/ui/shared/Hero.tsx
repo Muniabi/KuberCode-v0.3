@@ -103,9 +103,9 @@ export function HeroNew() {
                     initial={{ opacity: 0, x: 60 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.7, delay: 0.2 }}
-                    className="absolute right-4 top-2/3 -translate-y-1/2 hidden xl:block w-[420px]"
+                    className="absolute right-4 top-2/3 -translate-y-1/2   hidden xl:block w-[420px]"
                 >
-                    <div className="rounded-2xl border border-white/5 bg-white/3 dark:bg-white/[0.03] backdrop-blur-sm overflow-hidden shadow-2xl">
+                    <div className="rounded-2xl border border-white/5 bg-[var(--bg-color-dark)]  dark:bg-white/[0.03] backdrop-blur-sm overflow-hidden shadow-2xl">
                         <div className="flex items-center gap-2 px-4 py-3 border-b border-white/5 bg-white/5">
                             <div className="w-3 h-3 rounded-full bg-red-500/70" />
                             <div className="w-3 h-3 rounded-full bg-yellow-500/70" />

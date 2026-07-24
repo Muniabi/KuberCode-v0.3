@@ -167,11 +167,11 @@ export function Footer() {
 
                 {/* Bottom */}
                 <div className="pt-8 border-t border-gray-100 dark:border-white/5 flex flex-col sm:flex-row items-center justify-between gap-3">
-                    <p className="text-m text-gray-300 dark:text-white/25">
+                    <p className="text-m text-gray-400 dark:text-white/25">
                         © {new Date().getFullYear()} KuberCode. Все права
                         защищены.
                     </p>
-                    <p className="text-m text-gray-300 dark:text-white/25">
+                    <p className="text-m text-gray-400 dark:text-white/25">
                         info@kubercode.ru
                     </p>
                 </div>

@@ -42,7 +42,7 @@ export function ExercisePreview() {
                             {[0, 1, 2, 3, 4].map((i) => (
                                 <div
                                     key={i}
-                                    className={`w-2 h-2 rounded-full ${i < 2 ? "bg-[var(--lime)]" : "bg-gray-200 dark:bg-white/10"}`}
+                                    className={`w-2 h-2 rounded-full ${i < 2 ? "bg-[var(--purple)] dark:bg-[var(--lime)]" : "bg-gray-300 dark:bg-white/30"}`}
                                 />
                             ))}
                         </div>
