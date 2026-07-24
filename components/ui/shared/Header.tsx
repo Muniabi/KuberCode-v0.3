@@ -6,9 +6,9 @@ import Link from "next/link";
 import { Container } from "@/components/ui/container";
 // import { Container, AccountButton } from "./index";
 // import { Link, useLocation } from "wouter";
+import { ThemeToggle } from "@/components/ui/ThemeToggle";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { ThemeToggle } from "@/components/ui/ThemeToggle";
 import { Menu, Code2 } from "lucide-react";
 
 const NAV_ITEMS = [
@@ -44,115 +44,111 @@ export const Header: React.FC<Props> = ({ className }) => {
         >
             <Container className="max-w-6xl mx-auto">
                 <div className="flex items-center justify-between h-16 px-4 sm:px-6">
-                    <div className="flex items-center gap-4 lg:gap-6">
-                        {/* Logo */}
-                        <Link
-                            href="/"
-                            className="flex items-center gap-2.5 shrink-0"
-                        >
-                            <div className="w-7 h-7">
-                                <svg
-                                    viewBox="0 0 32 32"
-                                    fill="none"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    className="w-full h-full text-[--purple]"
-                                >
-                                    <rect
-                                        x="4"
-                                        y="2"
-                                        width="6"
-                                        height="28"
-                                        fill="currentColor"
-                                    />
-                                    <rect
-                                        x="10"
-                                        y="12"
-                                        width="6"
-                                        height="6"
-                                        fill="currentColor"
-                                    />
-                                    <rect
-                                        x="15"
-                                        y="7"
-                                        width="6"
-                                        height="6"
-                                        fill="currentColor"
-                                    />
-                                    <rect
-                                        x="20"
-                                        y="2"
-                                        width="6"
-                                        height="6"
-                                        fill="currentColor"
-                                    />
-                                    <rect
-                                        x="10"
-                                        y="14"
-                                        width="6"
-                                        height="6"
-                                        fill="currentColor"
-                                    />
-                                    <rect
-                                        x="15"
-                                        y="19"
-                                        width="6"
-                                        height="6"
-                                        fill="currentColor"
-                                    />
-                                    <rect
-                                        x="20"
-                                        y="24"
-                                        width="6"
-                                        height="6"
-                                        fill="currentColor"
-                                    />
-                                </svg>
-                            </div>
-                            <span className="text-xl font-semibold text-gray-900 dark:text-white font-neopixel tracking-tight">
-                                KuberCode
-                            </span>
-                        </Link>
+                    {/* Logo */}
+                    <Link
+                        href="/"
+                        className="flex items-center gap-2.5 shrink-0"
+                    >
+                        <div className="w-7 h-7">
+                            <svg
+                                viewBox="0 0 32 32"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg"
+                                className="w-full h-full text-[--purple]"
+                            >
+                                <rect
+                                    x="4"
+                                    y="2"
+                                    width="6"
+                                    height="28"
+                                    fill="currentColor"
+                                />
+                                <rect
+                                    x="10"
+                                    y="12"
+                                    width="6"
+                                    height="6"
+                                    fill="currentColor"
+                                />
+                                <rect
+                                    x="15"
+                                    y="7"
+                                    width="6"
+                                    height="6"
+                                    fill="currentColor"
+                                />
+                                <rect
+                                    x="20"
+                                    y="2"
+                                    width="6"
+                                    height="6"
+                                    fill="currentColor"
+                                />
+                                <rect
+                                    x="10"
+                                    y="14"
+                                    width="6"
+                                    height="6"
+                                    fill="currentColor"
+                                />
+                                <rect
+                                    x="15"
+                                    y="19"
+                                    width="6"
+                                    height="6"
+                                    fill="currentColor"
+                                />
+                                <rect
+                                    x="20"
+                                    y="24"
+                                    width="6"
+                                    height="6"
+                                    fill="currentColor"
+                                />
+                            </svg>
+                        </div>
+                        <span className="text-xl font-semibold text-gray-900 dark:text-white font-neopixel tracking-tight">
+                            KuberCode
+                        </span>
+                    </Link>
 
-                        {/* Desktop nav */}
-                        <nav className="hidden md:flex items-center gap-1">
-                            {NAV_ITEMS.map((item) => {
-                                const isActive = item.href === "/";
-                                // ? pathname === "/"
-                                // : pathname.startsWith(item.href);
-                                return (
-                                    <Link
-                                        key={item.href}
-                                        href={item.href}
-                                        className={cn(
-                                            "px-3.5 py-2 rounded-xl text-sm font-medium transition-all",
-                                            isActive
-                                                ? "text-[var(--purple)] bg-[var(--purple)]/10 dark:text-[var(--lime)] dark:bg-[var(--lime)]/10"
-                                                : "text-gray-600 dark:text-white/60 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-white/5",
-                                        )}
-                                    >
-                                        {item.label}
-                                    </Link>
-                                );
-                            })}
-                        </nav>
-                    </div>
+                    {/* Desktop nav */}
+                    <nav className="hidden md:flex items-center gap-1">
+                        {NAV_ITEMS.map((item) => {
+                            const isActive = item.href === "/";
+                            // ? pathname === "/"
+                            // : pathname.startsWith(item.href);
+                            return (
+                                <Link
+                                    key={item.href}
+                                    href={item.href}
+                                    className={cn(
+                                        "px-3.5 py-2 rounded-xl text-sm font-medium transition-all",
+                                        isActive
+                                            ? "text-[var(--purple)] bg-[var(--purple)]/10 dark:text-[var(--lime)] dark:bg-[var(--lime)]/10"
+                                            : "text-gray-600 dark:text-white/60 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-white/5",
+                                    )}
+                                >
+                                    {item.label}
+                                </Link>
+                            );
+                        })}
+                    </nav>
 
                     {/* Right: Account + Mobile toggle */}
-                    <div className="ml-auto flex items-center gap-2">
+                    <div className="flex items-center gap-2">
                         <div className="hidden md:flex items-center gap-2">
-                            <button
+                            <Button
                                 type="button"
-                                className="text-sm font-medium text-gray-700 dark:text-white/80 hover:text-gray-900 dark:hover:text-white"
+                                className="text-[var(--purple)] bg-[var(--purple)]/20  dark:text-[var(--lime)] dark:bg-[var(--lime)]/20"
                             >
                                 Вход
-                            </button>
+                            </Button>
                             <ThemeToggle />
                         </div>
-
-                        <div className="flex items-center gap-2 md:hidden">
-                            <ThemeToggle />
-                            {/* <AccountButton /> */}
-                            {/* Mobile hamburger */}
+                        {/* <AccountButton /> */}
+                        {/* Mobile hamburger */}
+                        <div className="md:hidden">
                             <Sheet open={isOpen} onOpenChange={setIsOpen}>
                                 <SheetTrigger asChild>
                                     <Button
@@ -163,6 +159,7 @@ export const Header: React.FC<Props> = ({ className }) => {
                                         <Menu className="h-5 w-5" />
                                     </Button>
                                 </SheetTrigger>
+                                <ThemeToggle />
                                 <SheetContent
                                     side="right"
                                     className="w-[280px] bg-white dark:bg-[#0c0c0e] border-gray-100 dark:border-white/5 p-0"
