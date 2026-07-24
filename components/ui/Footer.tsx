@@ -99,7 +99,7 @@ export function Footer() {
                                 href="https://github.com/Muniabi/KuberCode-v0.3"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="w-8 h-8 rounded-lg flex items-center justify-center border dark:bg-[var(--bg-color-light)] border-gray-200 dark:border-white/10 text-gray-400 dark:text-white/30 hover:text-gray-700 dark:hover:text-white hover:border-gray-300 dark:hover:border-white/20 transition-all"
+                                className="w-8 h-8 rounded-lg flex items-center justify-center border hover:bg-gray-200 dark:bg-[var(--bg-color-light)] dark:hover:bg-[var(--bg-color-light)]/80 border-gray-200 dark:border-white/10 text-gray-400 dark:text-white/30 hover:text-gray-700 dark:hover:text-white hover:border-gray-300 dark:hover:border-white/20 transition-all"
                                 aria-label="GitHub"
                             >
                                 <Image
@@ -113,7 +113,7 @@ export function Footer() {
                                 href="https://t.me"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="w-8 h-8 rounded-lg flex items-center justify-center border dark:bg-[var(--bg-color-light)] border-gray-200 dark:border-white/10 text-gray-400 dark:text-white/30 hover:text-gray-700 dark:hover:text-white hover:border-gray-300 dark:hover:border-white/20 transition-all"
+                                className="w-8 h-8 rounded-lg flex items-center justify-center border hover:bg-gray-200 dark:bg-[var(--bg-color-light)] dark:hover:bg-[var(--bg-color-light)]/80 border-gray-200 dark:border-white/10 text-gray-400 dark:text-white/30 hover:text-gray-700 dark:hover:text-white hover:border-gray-300 dark:hover:border-white/20 transition-all"
                                 aria-label="Telegram"
                             >
                                 <Image
@@ -167,11 +167,11 @@ export function Footer() {
 
                 {/* Bottom */}
                 <div className="pt-8 border-t border-gray-100 dark:border-white/5 flex flex-col sm:flex-row items-center justify-between gap-3">
-                    <p className="text-xs text-gray-400 dark:text-white/25">
+                    <p className="text-m text-gray-300 dark:text-white/25">
                         © {new Date().getFullYear()} KuberCode. Все права
                         защищены.
                     </p>
-                    <p className="text-xs text-gray-400 dark:text-white/25">
+                    <p className="text-m text-gray-300 dark:text-white/25">
                         info@kubercode.ru
                     </p>
                 </div>

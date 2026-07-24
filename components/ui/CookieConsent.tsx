@@ -2,7 +2,17 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { Cookie, Settings, Shield, Sparkles, X } from "lucide-react";
 
+import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import {
+    Card,
+    CardContent,
+    CardFooter,
+    CardHeader,
+} from "@/components/ui/card";
+import { Label } from "@/components/ui/label";
+import { Separator } from "@/components/ui/separator";
+import { Switch } from "@/components/ui/switch";
 
 type CookieType = "necessary" | "analytics" | "marketing";
 
@@ -18,6 +28,12 @@ const defaultPreferences: CookiePreferences = {
     marketing: false,
 };
 
+const allAcceptedPreferences: CookiePreferences = {
+    necessary: true,
+    analytics: true,
+    marketing: true,
+};
+
 export const CookieConsent = () => {
     const [isVisible, setIsVisible] = useState(false);
     const [showSettings, setShowSettings] = useState(false);
@@ -25,6 +41,20 @@ export const CookieConsent = () => {
         useState<CookiePreferences>(defaultPreferences);
 
     const handleAccept = () => {
+        setPreferences(allAcceptedPreferences);
+        setIsVisible(false);
+        localStorage.setItem("cookieConsent", "accepted");
+        localStorage.setItem(
+            "cookiePreferences",
+            JSON.stringify(allAcceptedPreferences),
+        );
+
+        if (allAcceptedPreferences.analytics) {
+            // TODO: Включить Google Analytics
+        }
+    };
+
+    const handleSavePreferences = () => {
         setIsVisible(false);
         localStorage.setItem("cookieConsent", "accepted");
         localStorage.setItem("cookiePreferences", JSON.stringify(preferences));
@@ -56,6 +86,7 @@ export const CookieConsent = () => {
 
         if (savedPreferences) {
             try {
+                // eslint-disable-next-line react-hooks/set-state-in-effect
                 setPreferences({
                     ...defaultPreferences,
                     ...JSON.parse(savedPreferences),
@@ -87,35 +118,40 @@ export const CookieConsent = () => {
             transition={{ duration: 0.35, ease: "easeOut" }}
             className="fixed inset-x-4 bottom-4 z-50 sm:left-auto sm:right-4 sm:inset-x-auto"
         >
-            <div className="relative mx-auto max-w-[460px] overflow-hidden rounded-[28px] border border-white/60 bg-white/78 p-4 shadow-[0_24px_70px_rgba(19,18,27,0.18)] backdrop-blur-2xl dark:border-white/10 dark:bg-[var(--bg-color-dark)]/75 sm:p-5">
+            <Card className="relative mx-auto max-w-[460px] overflow-hidden rounded-[28px] border border-white/60 bg-white/78 px-0 py-0 shadow-[0_24px_70px_rgba(19,18,27,0.18)] backdrop-blur-2xl dark:border-white/10 dark:bg-[var(--bg-color-dark)]/75">
                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(137,72,255,0.18),transparent_38%),radial-gradient(circle_at_bottom_right,rgba(206,255,26,0.16),transparent_32%)]" />
                 <div className="absolute -right-10 -top-10 h-28 w-28 rounded-full bg-[var(--purple)]/20 blur-3xl" />
                 <div className="absolute -bottom-8 -left-8 h-24 w-24 rounded-full bg-[var(--lime)]/20 blur-3xl" />
 
-                <div className="relative flex flex-col gap-5">
-                    <div className="flex items-start justify-between gap-3">
-                        <div className="flex items-center gap-3">
-                            <div className="flex h-11 w-11 items-center justify-center rounded-2xl border border-[var(--purple)]/20 bg-[var(--purple)]/10 text-[var(--purple)] shadow-[0_10px_30px_rgba(137,72,255,0.18)] dark:border-[var(--lime)]/20 dark:bg-[var(--lime)]/10 dark:text-[var(--lime)]">
-                                <Cookie className="h-5 w-5" />
-                            </div>
-                            <div>
-                                <p className="text-xs font-semibold uppercase tracking-[0.24em] text-[var(--purple)] dark:text-[var(--lime)]">
-                                    Privacy
-                                </p>
-                                <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
-                                    Настройки Cookie
-                                </h3>
-                            </div>
+                <CardHeader className="relative flex flex-row items-start justify-between gap-3 px-4 pt-4 sm:px-5 sm:pt-5">
+                    <div className="flex items-center gap-3">
+                        <div className="flex h-11 w-11 items-center justify-center rounded-2xl border border-[var(--purple)]/20 bg-[var(--purple)]/10 text-[var(--purple)] shadow-[0_10px_30px_rgba(137,72,255,0.18)] dark:border-[var(--lime)]/20 dark:bg-[var(--lime)]/10 dark:text-[var(--lime)]">
+                            <Cookie className="h-5 w-5" />
                         </div>
-
-                        <button
-                            onClick={() => setIsVisible(false)}
-                            className="flex h-9 w-9 items-center justify-center rounded-full border border-gray-200/80 bg-white/70 text-gray-600 transition-all hover:-translate-y-0.5 hover:bg-white dark:border-white/10 dark:bg-white/5 dark:text-gray-300 dark:hover:bg-white/10"
-                        >
-                            <X className="h-4 w-4" />
-                        </button>
+                        <div>
+                            <Badge
+                                variant="outline"
+                                className="mb-1 border-[var(--purple)]/20 bg-[var(--purple)]/10 text-[var(--purple)] dark:border-[var(--lime)]/20 dark:bg-[var(--lime)]/10 dark:text-[var(--lime)]"
+                            >
+                                Privacy
+                            </Badge>
+                            <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
+                                Настройки Cookie
+                            </h3>
+                        </div>
                     </div>
 
+                    <Button
+                        variant="ghost"
+                        size="icon"
+                        onClick={() => setIsVisible(false)}
+                        className="h-9 w-9 rounded-full border border-gray-200/80 bg-white/70 text-gray-600 hover:bg-white dark:border-white/10 dark:bg-white/5 dark:text-gray-300 dark:hover:bg-white/10"
+                    >
+                        <X className="h-4 w-4" />
+                    </Button>
+                </CardHeader>
+
+                <CardContent className="relative space-y-4 px-4 pb-4 sm:px-5 sm:pb-5">
                     <div className="rounded-2xl border border-[var(--purple)]/10 bg-white/45 p-3 text-sm text-gray-600 dark:border-white/10 dark:bg-white/[0.03] dark:text-gray-300">
                         Мы используем cookie для улучшения работы сайта, анализа
                         поведения и персонализации опыта. Вы всегда можете
@@ -134,26 +170,28 @@ export const CookieConsent = () => {
                             >
                                 <div className="grid gap-3 sm:grid-cols-2">
                                     <Button
+                                        variant="outline"
                                         onClick={handleDecline}
-                                        className="h-11 rounded-2xl border border-gray-200/80 bg-white/70 text-sm font-medium text-gray-700 transition-all hover:-translate-y-0.5 hover:bg-white dark:border-white/10 dark:bg-white/5 dark:text-gray-200 dark:hover:bg-white/10"
+                                        className="h-11 rounded-2xl border border-gray-200/80 bg-white/70 text-sm font-medium text-gray-700 hover:bg-white dark:border-white/10 dark:bg-white/5 dark:text-gray-200 dark:hover:bg-white/10"
                                     >
                                         Отклонить
                                     </Button>
                                     <Button
                                         onClick={handleAccept}
-                                        className="h-11 rounded-2xl bg-[var(--purple)] text-sm font-semibold text-white transition-all hover:-translate-y-0.5 hover:bg-[var(--purple)]/90 dark:bg-[var(--lime)] dark:text-black dark:hover:bg-[var(--lime)]/90"
+                                        className="h-11 rounded-2xl bg-[var(--purple)] text-sm font-semibold text-white hover:bg-[var(--purple)]/90 dark:bg-[var(--lime)] dark:text-black dark:hover:bg-[var(--lime)]/90"
                                     >
                                         Принять все
                                     </Button>
                                 </div>
 
-                                <button
+                                <Button
+                                    variant="ghost"
                                     onClick={() => setShowSettings(true)}
-                                    className="flex items-center gap-2 text-sm font-medium text-[var(--purple)] transition-colors hover:text-[var(--purple)]/80 dark:text-[var(--lime)] dark:hover:text-[var(--lime)]/80"
+                                    className="h-auto gap-2 px-0 text-sm font-medium text-[var(--purple)] hover:bg-transparent hover:text-[var(--purple)]/80 dark:text-[var(--lime)] dark:hover:text-[var(--lime)]/80"
                                 >
                                     <Settings className="h-4 w-4" />
                                     Настроить предпочтения
-                                </button>
+                                </Button>
                             </motion.div>
                         ) : (
                             <motion.div
@@ -172,9 +210,9 @@ export const CookieConsent = () => {
                                                     <Shield className="h-4 w-4" />
                                                 </div>
                                                 <div>
-                                                    <p className="text-sm font-medium text-gray-900 dark:text-white">
+                                                    <Label className="text-sm font-medium text-gray-900 dark:text-white">
                                                         Необходимые
-                                                    </p>
+                                                    </Label>
                                                     <p className="text-xs text-gray-500 dark:text-gray-400">
                                                         Обязательны для работы
                                                         сайта
@@ -182,19 +220,14 @@ export const CookieConsent = () => {
                                                 </div>
                                             </div>
 
-                                            <label className="relative inline-flex cursor-not-allowed items-center">
-                                                <input
-                                                    type="checkbox"
-                                                    checked={
-                                                        preferences.necessary
-                                                    }
-                                                    disabled
-                                                    className="peer sr-only"
-                                                />
-                                                <span className="h-6 w-11 rounded-full bg-gray-200 transition-colors dark:bg-gray-700" />
-                                                <span className="absolute left-[2px] top-[2px] h-5 w-5 rounded-full bg-white transition-transform peer-checked:translate-x-5 dark:bg-gray-100" />
-                                            </label>
+                                            <Switch
+                                                checked={preferences.necessary}
+                                                disabled
+                                                className="data-[state=checked]:bg-[var(--purple)] dark:data-[state=checked]:bg-[var(--lime)]"
+                                            />
                                         </div>
+
+                                        <Separator className="bg-[var(--purple)]/10 dark:bg-white/10" />
 
                                         <div className="flex items-center justify-between gap-3">
                                             <div className="flex items-center gap-3">
@@ -202,9 +235,9 @@ export const CookieConsent = () => {
                                                     <Sparkles className="h-4 w-4" />
                                                 </div>
                                                 <div>
-                                                    <p className="text-sm font-medium text-gray-900 dark:text-white">
+                                                    <Label className="text-sm font-medium text-gray-900 dark:text-white">
                                                         Аналитика
-                                                    </p>
+                                                    </Label>
                                                     <p className="text-xs text-gray-500 dark:text-gray-400">
                                                         Для понимания поведения
                                                         пользователей
@@ -212,23 +245,18 @@ export const CookieConsent = () => {
                                                 </div>
                                             </div>
 
-                                            <label className="relative inline-flex cursor-pointer items-center">
-                                                <input
-                                                    type="checkbox"
-                                                    checked={
-                                                        preferences.analytics
-                                                    }
-                                                    onChange={() =>
-                                                        togglePreference(
-                                                            "analytics",
-                                                        )
-                                                    }
-                                                    className="peer sr-only"
-                                                />
-                                                <span className="h-6 w-11 rounded-full bg-gray-200 transition-colors peer-checked:bg-[var(--purple)] dark:bg-gray-700 dark:peer-checked:bg-[var(--lime)]" />
-                                                <span className="absolute left-[2px] top-[2px] h-5 w-5 rounded-full bg-white transition-transform peer-checked:translate-x-5 dark:bg-gray-100" />
-                                            </label>
+                                            <Switch
+                                                checked={preferences.analytics}
+                                                onCheckedChange={() =>
+                                                    togglePreference(
+                                                        "analytics",
+                                                    )
+                                                }
+                                                className="data-[state=checked]:bg-[var(--purple)] dark:data-[state=checked]:bg-[var(--lime)]"
+                                            />
                                         </div>
+
+                                        <Separator className="bg-[var(--purple)]/10 dark:bg-white/10" />
 
                                         <div className="flex items-center justify-between gap-3">
                                             <div className="flex items-center gap-3">
@@ -236,9 +264,9 @@ export const CookieConsent = () => {
                                                     <Cookie className="h-4 w-4" />
                                                 </div>
                                                 <div>
-                                                    <p className="text-sm font-medium text-gray-900 dark:text-white">
+                                                    <Label className="text-sm font-medium text-gray-900 dark:text-white">
                                                         Маркетинг
-                                                    </p>
+                                                    </Label>
                                                     <p className="text-xs text-gray-500 dark:text-gray-400">
                                                         Для персонализированных
                                                         рекомендаций
@@ -246,36 +274,30 @@ export const CookieConsent = () => {
                                                 </div>
                                             </div>
 
-                                            <label className="relative inline-flex cursor-pointer items-center">
-                                                <input
-                                                    type="checkbox"
-                                                    checked={
-                                                        preferences.marketing
-                                                    }
-                                                    onChange={() =>
-                                                        togglePreference(
-                                                            "marketing",
-                                                        )
-                                                    }
-                                                    className="peer sr-only"
-                                                />
-                                                <span className="h-6 w-11 rounded-full bg-gray-200 transition-colors peer-checked:bg-[var(--purple)] dark:bg-gray-700 dark:peer-checked:bg-[var(--lime)]" />
-                                                <span className="absolute left-[2px] top-[2px] h-5 w-5 rounded-full bg-white transition-transform peer-checked:translate-x-5 dark:bg-gray-100" />
-                                            </label>
+                                            <Switch
+                                                checked={preferences.marketing}
+                                                onCheckedChange={() =>
+                                                    togglePreference(
+                                                        "marketing",
+                                                    )
+                                                }
+                                                className="data-[state=checked]:bg-[var(--purple)] dark:data-[state=checked]:bg-[var(--lime)]"
+                                            />
                                         </div>
                                     </div>
                                 </div>
 
                                 <div className="grid gap-3 sm:grid-cols-2">
                                     <Button
+                                        variant="outline"
                                         onClick={() => setShowSettings(false)}
-                                        className="h-11 rounded-2xl border border-gray-200/80 bg-white/70 text-sm font-medium text-gray-700 transition-all hover:-translate-y-0.5 hover:bg-white dark:border-white/10 dark:bg-white/5 dark:text-gray-200 dark:hover:bg-white/10"
+                                        className="h-11 rounded-2xl border border-gray-200/80 bg-white/70 text-sm font-medium text-gray-700 hover:bg-white dark:border-white/10 dark:bg-white/5 dark:text-gray-200 dark:hover:bg-white/10"
                                     >
                                         Назад
                                     </Button>
                                     <Button
-                                        onClick={handleAccept}
-                                        className="h-11 rounded-2xl bg-[var(--purple)] text-sm font-semibold text-white transition-all hover:-translate-y-0.5 hover:bg-[var(--purple)]/90 dark:bg-[var(--lime)] dark:text-black dark:hover:bg-[var(--lime)]/90"
+                                        onClick={handleSavePreferences}
+                                        className="h-11 rounded-2xl bg-[var(--purple)] text-sm font-semibold text-white hover:bg-[var(--purple)]/90 dark:bg-[var(--lime)] dark:text-black dark:hover:bg-[var(--lime)]/90"
                                     >
                                         Сохранить
                                     </Button>
@@ -283,8 +305,12 @@ export const CookieConsent = () => {
                             </motion.div>
                         )}
                     </AnimatePresence>
-                </div>
-            </div>
+                </CardContent>
+
+                <CardFooter className="relative hidden px-4 pb-4 text-xs text-gray-500 dark:text-gray-400 sm:px-5 sm:block">
+                    Ваш выбор можно изменить позже в любом месте сайта.
+                </CardFooter>
+            </Card>
         </motion.div>
     );
 };
