@@ -5,8 +5,8 @@ import { HowItWorks } from "@/components/ui/shared/how-it-works";
 import { TracksPreview } from "@/components/ui/shared/tracks-preview";
 import { ExercisePreview } from "@/components/ui/shared/exercise-preview";
 import { SocialProof } from "@/components/ui/shared/social-proof";
-// import { LandingCTA } from "@/components/shared/landing/landing-cta";
-// import { CookieConsent } from "@/components/shared/CookieConsent";
+import { LandingCTA } from "@/components/ui/shared/landing-cta";
+import { CookieConsent } from "@/components/ui/CookieConsent";
 
 export default function Home() {
     return (
@@ -16,8 +16,8 @@ export default function Home() {
             <TracksPreview />
             <ExercisePreview />
             <SocialProof />
-            {/* <LandingCTA /> */}
-            {/* <CookieConsent /> */}
+            <LandingCTA />
+            <CookieConsent />
         </main>
     );
 }
