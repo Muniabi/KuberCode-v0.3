@@ -4,7 +4,7 @@ import { HeroNew } from "@/components/ui/shared/Hero";
 import { HowItWorks } from "@/components/ui/shared/how-it-works";
 import { TracksPreview } from "@/components/ui/shared/tracks-preview";
 import { ExercisePreview } from "@/components/ui/shared/exercise-preview";
-// import { SocialProof } from "@/components/shared/landing/social-proof";
+import { SocialProof } from "@/components/ui/shared/social-proof";
 // import { LandingCTA } from "@/components/shared/landing/landing-cta";
 // import { CookieConsent } from "@/components/shared/CookieConsent";
 
@@ -15,7 +15,7 @@ export default function Home() {
             <HowItWorks />
             <TracksPreview />
             <ExercisePreview />
-            {/* <SocialProof /> */}
+            <SocialProof />
             {/* <LandingCTA /> */}
             {/* <CookieConsent /> */}
         </main>
