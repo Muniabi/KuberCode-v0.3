@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import { cn } from "@/lib/utils";
-// import { Footer } from "@/components/shared/index";
+import { Footer } from "@/components/ui/Footer";
 import { Providers } from "@/lib/providers";
-import { Header } from "@/components/ui/shared/Header";
+import { Header } from "@/components/ui/Header";
 import { JetBrains_Mono } from "next/font/google";
 
 const geistSans = localFont({
@@ -113,6 +113,7 @@ export default function RootLayout({
                 <Providers>
                     <Header />
                     {children}
+                    <Footer />
                 </Providers>
             </body>
         </html>
