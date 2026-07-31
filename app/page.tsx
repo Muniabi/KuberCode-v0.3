@@ -1,5 +1,3 @@
-"use client";
-
 import { HeroNew } from "@/components/ui/shared/Hero";
 import { HowItWorks } from "@/components/ui/shared/how-it-works";
 import { TracksPreview } from "@/components/ui/shared/tracks-preview";
@@ -10,7 +8,7 @@ import { CookieConsent } from "@/components/ui/CookieConsent";
 
 export default function Home() {
     return (
-        <main className="">
+        <main>
             <HeroNew />
             <HowItWorks />
             <TracksPreview />

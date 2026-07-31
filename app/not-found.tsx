@@ -41,7 +41,7 @@ export default function NotFoundPage() {
                             На главную
                         </Button>
                     </Link>
-                    <Link href="/tracks">
+                    <Link href="/#tracks">
                         <Button
                             variant="outline"
                             className="w-full sm:w-auto rounded-xl border-gray-200 dark:border-white/10 text-gray-700 dark:text-white/60 hover:bg-gray-100 dark:hover:bg-white/5"

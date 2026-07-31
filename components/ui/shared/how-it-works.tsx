@@ -1,3 +1,7 @@
+"use client";
+
+"use client";
+
 import { motion } from "framer-motion";
 import { BookOpen, Code2, TrendingUp } from "lucide-react";
 
@@ -36,7 +40,7 @@ const STEPS = [
 
 export function HowItWorks() {
     return (
-        <section className="py-24 bg-gray-50 dark:bg-black/40">
+        <section id="how-it-works" className="py-24 bg-gray-50 dark:bg-black/40 scroll-mt-20">
             <div className="max-w-6xl mx-auto px-6">
                 <motion.div
                     initial={{ opacity: 0, y: 24 }}

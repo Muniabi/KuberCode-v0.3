@@ -1,12 +1,10 @@
+"use client";
+
 import { motion } from "framer-motion";
 import { ArrowRight, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
-// import { useAuthGate } from "@/hooks/useAuthGate";
 
 export function LandingCTA() {
-    // const [, navigate] = useLocation();
-    // const isAuth = useAuthGate();
-
     return (
         <section className="py-24 bg-gray-50 dark:bg-black/40">
             <div className="max-w-4xl mx-auto px-6 text-center">
@@ -16,7 +14,6 @@ export function LandingCTA() {
                     viewport={{ once: true }}
                     transition={{ duration: 0.5 }}
                 >
-                    {/* Glow */}
                     <div className="relative inline-block mb-8">
                         <div className="absolute inset-0 bg-[var(--purple)]/20 dark:bg-[var(--lime)]/10 rounded-full blur-3xl scale-150" />
                         <div className="relative w-16 h-16 rounded-2xl bg-[var(--purple)] dark:bg-[var(--lime)] flex items-center justify-center mx-auto">
@@ -40,23 +37,21 @@ export function LandingCTA() {
                     <div className="flex flex-col sm:flex-row gap-4 justify-center">
                         <Button
                             size="lg"
-                            // onClick={() =>
-                            //     navigate(isAuth ? "/account" : "/login")
-                            // }
+                            asChild
                             className="h-14 px-10 rounded-2xl bg-[var(--purple)] hover:bg-[var(--purple)]/90 dark:bg-[var(--lime)] dark:text-black dark:hover:bg-[var(--lime)]/90 text-white text-base font-semibold gap-2 w-full sm:w-auto"
                         >
-                            {/* {isAuth
-                                ? "Продолжить обучение"
-                                : "Начать бесплатно"} */}
-                            <ArrowRight className="w-4 h-4" />
+                            <a href="#tracks">
+                                Начать бесплатно
+                                <ArrowRight className="w-4 h-4" />
+                            </a>
                         </Button>
                         <Button
                             size="lg"
                             variant="outline"
-                            // onClick={() => navigate("/tracks")}
+                            asChild
                             className="h-14 px-10 rounded-2xl border-gray-200 dark:border-white/10 text-gray-700 dark:text-white/60 hover:bg-gray-100 dark:hover:bg-white/5 text-base w-full sm:w-auto"
                         >
-                            Смотреть все треки
+                            <a href="#tracks">Смотреть все треки</a>
                         </Button>
                     </div>
                 </motion.div>

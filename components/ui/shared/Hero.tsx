@@ -1,21 +1,12 @@
+"use client";
+
 import { motion } from "framer-motion";
-// import { useLocation } from "wouter";
 import { ArrowRight, Code2, Zap } from "lucide-react";
 import { Button } from "@/components/ui/button";
-// import { STATS } from "@/data/tracks";
-// import { useAuthGate } from "@/hooks/useAuthGate";
 
 export function HeroNew() {
-    // const [, navigate] = useLocation();
-    // const isAuth = useAuthGate();
-
-    const handleStartLearning = () => {
-        // navigate(isAuth ? "/account" : "/login");
-    };
-
     return (
         <section className="relative min-h-[90vh] flex items-center overflow-hidden bg-[var(--bg-color-light)] dark:bg-[var(--bg-color-dark)]">
-            {/* Background grid */}
             <div className="absolute inset-0 pointer-events-none">
                 <div
                     className="absolute inset-0 opacity-[0.03] dark:opacity-[0.04]"
@@ -24,8 +15,8 @@ export function HeroNew() {
                         backgroundSize: "60px 60px",
                     }}
                 />
-                <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-[var(--purple)/0.1] rounded-full blur-[120px]" />
-                <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-[var(--lime)/0.05] rounded-full blur-[100px]" />
+                <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-[var(--purple)]/10 rounded-full blur-[120px]" />
+                <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-[var(--lime)]/5 rounded-full blur-[100px]" />
             </div>
 
             <div className="relative z-10 w-full max-w-6xl mx-auto px-6 py-24">
@@ -35,13 +26,11 @@ export function HeroNew() {
                     transition={{ duration: 0.6, ease: "easeOut" }}
                     className="max-w-3xl"
                 >
-                    {/* Badge */}
-                    <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[var(--purple)/0.3] bg-[var(--purple)/0.1] text-[var(--purple)] dark:text-[var(--lime)] text-sm font-medium mb-8">
+                    <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[var(--purple)]/30 dark:border-[var(--lime)]/30 bg-[var(--purple)]/10 dark:bg-[var(--lime)]/10 text-[var(--purple)] dark:text-[var(--lime)] text-sm font-medium mb-8">
                         <Zap className="w-3.5 h-3.5" />
                         Учись через практику
                     </div>
 
-                    {/* Headline */}
                     <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold leading-[1.05] tracking-tight text-gray-900 dark:text-white mb-6">
                         Становись
                         <br />
@@ -58,54 +47,36 @@ export function HeroNew() {
                         отслеживай прогресс.
                     </p>
 
-                    {/* CTAs */}
                     <div className="flex flex-wrap gap-4 mb-16">
                         <Button
                             size="lg"
-                            onClick={handleStartLearning}
-                            className="h-14 px-8 rounded-2xl bg-[var(--purple)] hover:bg-[var(--purple)/0.9] dark:bg-[var(--lime)] dark:hover:bg-white dark:text-black dark:hover:text-black  text-white text-base font-semibold gap-2 transition-all duration-400 hover:-translate-y-1"
+                            asChild
+                            className="h-14 px-8 rounded-2xl bg-[var(--purple)] hover:bg-[var(--purple)]/90 dark:bg-[var(--lime)] dark:hover:bg-white dark:text-black dark:hover:text-black text-white text-base font-semibold gap-2 transition-all duration-400 hover:-translate-y-1"
                         >
-                            Начать обучение
-                            {/* {isAuth ? "Перейти в кабинет" : "Начать обучение"} */}
-                            <ArrowRight className="w-4 h-4" />
+                            <a href="#tracks">
+                                Начать обучение
+                                <ArrowRight className="w-4 h-4" />
+                            </a>
                         </Button>
-                        <button
-                            // onClick={() => navigate("/tracks")}
-                            className="h-14 px-8 rounded-2xl border border-gray-200 dark:border-white/20 text-gray-700 dark:text-white/70 hover:bg-gray-100 dark:hover:bg-white/5 text-base gap-2 flex items-center  transition-all duration-400 hover:-translate-y-1"
+                        <a
+                            href="#tracks"
+                            className="h-14 px-8 rounded-2xl border border-gray-200 dark:border-white/20 text-gray-700 dark:text-white/70 hover:bg-gray-100 dark:hover:bg-white/5 text-base gap-2 flex items-center transition-all duration-400 hover:-translate-y-1"
                         >
                             <Code2 className="w-4 h-4" />
                             Смотреть треки
-                        </button>
+                        </a>
                     </div>
 
-                    {/* Stats */}
-                    <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 pt-8 border-t border-gray-100 dark:border-white/5">
-                        {/* {STATS.map((stat) => (
-                            <motion.div
-                                key={stat.label}
-                                initial={{ opacity: 0, y: 16 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ duration: 0.5, delay: 0.3 }}
-                            >
-                                <div className="text-2xl font-bold text-gray-900 dark:text-white">
-                                    {stat.value}
-                                </div>
-                                <div className="text-sm text-gray-400 dark:text-white/40 mt-0.5">
-                                    {stat.label}
-                                </div>
-                            </motion.div>
-                        ))} */}
-                    </div>
+                    <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 pt-8 border-t border-gray-100 dark:border-white/5" />
                 </motion.div>
 
-                {/* Floating code preview */}
                 <motion.div
                     initial={{ opacity: 0, x: 60 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.7, delay: 0.2 }}
-                    className="absolute right-4 top-2/3 -translate-y-1/2   hidden xl:block w-[420px]"
+                    className="absolute right-4 top-2/3 -translate-y-1/2 hidden xl:block w-[420px]"
                 >
-                    <div className="rounded-2xl border border-white/5 bg-[var(--bg-color-dark)]  dark:bg-white/[0.03] backdrop-blur-sm overflow-hidden shadow-2xl">
+                    <div className="rounded-2xl border border-white/5 bg-[var(--bg-color-dark)] dark:bg-white/[0.03] backdrop-blur-sm overflow-hidden shadow-2xl">
                         <div className="flex items-center gap-2 px-4 py-3 border-b border-white/5 bg-white/5">
                             <div className="w-3 h-3 rounded-full bg-red-500/70" />
                             <div className="w-3 h-3 rounded-full bg-yellow-500/70" />

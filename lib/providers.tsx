@@ -10,7 +10,7 @@ export const Providers: React.FC<React.PropsWithChildren> = ({ children }) => {
         <>
             <ThemeProvider
                 attribute="class"
-                defaultTheme="system"
+                defaultTheme="dark"
                 enableSystem
                 disableTransitionOnChange
                 storageKey="kc-theme"

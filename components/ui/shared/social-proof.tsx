@@ -1,3 +1,7 @@
+"use client";
+
+"use client";
+
 import { motion } from "framer-motion";
 import { Star } from "lucide-react";
 import { TESTIMONIALS } from "@/data/tracks";

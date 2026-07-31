@@ -3,34 +3,49 @@
 import { cn } from "@/lib/utils";
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Container } from "@/components/ui/container";
-// import { Container, AccountButton } from "./index";
-// import { Link, useLocation } from "wouter";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { Menu, Code2 } from "lucide-react";
+import { Menu } from "lucide-react";
+import { Logo } from "@/components/ui/Logo";
 
 const NAV_ITEMS = [
-    { href: "/", label: "Главная" },
-    { href: "/tracks", label: "Треки" },
-    { href: "/mentors", label: "Менторы" },
+    { href: "/", label: "Главная", kind: "route" as const },
+    { href: "#tracks", label: "Треки", kind: "anchor" as const },
+    { href: "#", label: "Менторы", kind: "soon" as const },
 ];
 
 interface Props {
     className?: string;
 }
 
+function isNavActive(
+    pathname: string,
+    item: (typeof NAV_ITEMS)[number],
+): boolean {
+    if (item.kind !== "route") return false;
+    if (item.href === "/") return pathname === "/";
+    return pathname === item.href || pathname.startsWith(`${item.href}/`);
+}
+
 export const Header: React.FC<Props> = ({ className }) => {
+    const pathname = usePathname();
     const [isOpen, setIsOpen] = useState(false);
     const [scrolled, setScrolled] = useState(false);
-    // const [pathname] = useLocation();
 
     useEffect(() => {
         const handleScroll = () => setScrolled(window.scrollY > 8);
         window.addEventListener("scroll", handleScroll, { passive: true });
         return () => window.removeEventListener("scroll", handleScroll);
     }, []);
+
+    const handleSoonClick = (
+        event: React.MouseEvent<HTMLAnchorElement>,
+    ) => {
+        event.preventDefault();
+    };
 
     return (
         <header
@@ -44,90 +59,52 @@ export const Header: React.FC<Props> = ({ className }) => {
         >
             <Container className="max-w-6xl mx-auto">
                 <div className="flex items-center justify-between h-16 px-4 sm:px-6">
-                    {/* Logo */}
-                    <Link
-                        href="/"
-                        className="flex items-center gap-2.5 shrink-0"
-                    >
-                        <div className="w-7 h-7">
-                            <svg
-                                viewBox="0 0 32 32"
-                                fill="none"
-                                xmlns="http://www.w3.org/2000/svg"
-                                className="w-full h-full text-[--purple]"
-                            >
-                                <rect
-                                    x="4"
-                                    y="2"
-                                    width="6"
-                                    height="28"
-                                    fill="currentColor"
-                                />
-                                <rect
-                                    x="10"
-                                    y="12"
-                                    width="6"
-                                    height="6"
-                                    fill="currentColor"
-                                />
-                                <rect
-                                    x="15"
-                                    y="7"
-                                    width="6"
-                                    height="6"
-                                    fill="currentColor"
-                                />
-                                <rect
-                                    x="20"
-                                    y="2"
-                                    width="6"
-                                    height="6"
-                                    fill="currentColor"
-                                />
-                                <rect
-                                    x="10"
-                                    y="14"
-                                    width="6"
-                                    height="6"
-                                    fill="currentColor"
-                                />
-                                <rect
-                                    x="15"
-                                    y="19"
-                                    width="6"
-                                    height="6"
-                                    fill="currentColor"
-                                />
-                                <rect
-                                    x="20"
-                                    y="24"
-                                    width="6"
-                                    height="6"
-                                    fill="currentColor"
-                                />
-                            </svg>
-                        </div>
-                        <span className="text-xl font-semibold text-gray-900 dark:text-white font-neopixel tracking-tight">
-                            KuberCode
-                        </span>
+                    <Link href="/" className="shrink-0">
+                        <Logo className="gap-2.5" />
                     </Link>
 
-                    {/* Desktop nav */}
                     <nav className="hidden md:flex items-center gap-1">
                         {NAV_ITEMS.map((item) => {
-                            const isActive = item.href === "/";
-                            // ? pathname === "/"
-                            // : pathname.startsWith(item.href);
+                            const isActive = isNavActive(pathname, item);
+                            const className = cn(
+                                "px-3.5 py-2 rounded-xl text-sm font-medium transition-all",
+                                isActive
+                                    ? "text-[var(--purple)] bg-[var(--purple)]/10 dark:text-[var(--lime)] dark:bg-[var(--lime)]/10"
+                                    : "text-gray-600 dark:text-white/60 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-white/5",
+                            );
+
+                            if (item.kind === "soon") {
+                                return (
+                                    <a
+                                        key={item.label}
+                                        href="#"
+                                        title="Скоро"
+                                        aria-disabled="true"
+                                        onClick={handleSoonClick}
+                                        className={className}
+                                    >
+                                        {item.label}
+                                    </a>
+                                );
+                            }
+
+                            if (item.kind === "anchor") {
+                                return (
+                                    <a
+                                        key={item.label}
+                                        href={item.href}
+                                        className={className}
+                                    >
+                                        {item.label}
+                                    </a>
+                                );
+                            }
+
                             return (
                                 <Link
                                     key={item.href}
                                     href={item.href}
-                                    className={cn(
-                                        "px-3.5 py-2 rounded-xl text-sm font-medium transition-all",
-                                        isActive
-                                            ? "text-[var(--purple)] bg-[var(--purple)]/10 dark:text-[var(--lime)] dark:bg-[var(--lime)]/10"
-                                            : "text-gray-600 dark:text-white/60 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-white/5",
-                                    )}
+                                    className={className}
                                 >
                                     {item.label}
                                 </Link>
@@ -135,19 +112,17 @@ export const Header: React.FC<Props> = ({ className }) => {
                         })}
                     </nav>
 
-                    {/* Right: Account + Mobile toggle */}
                     <div className="flex items-center gap-2">
                         <div className="hidden md:flex items-center gap-2">
                             <Button
                                 type="button"
-                                className="text-[var(--purple)] bg-[var(--purple)]/20  dark:text-[var(--lime)] dark:bg-[var(--lime)]/20"
+                                title="Скоро"
+                                className="text-[var(--purple)] bg-[var(--purple)]/20 dark:text-[var(--lime)] dark:bg-[var(--lime)]/20"
                             >
                                 Вход
                             </Button>
                             <ThemeToggle />
                         </div>
-                        {/* <AccountButton /> */}
-                        {/* Mobile hamburger */}
                         <div className="md:hidden">
                             <Sheet open={isOpen} onOpenChange={setIsOpen}>
                                 <SheetTrigger asChild>
@@ -164,28 +139,66 @@ export const Header: React.FC<Props> = ({ className }) => {
                                     side="right"
                                     className="w-[280px] bg-white dark:bg-[#0c0c0e] border-gray-100 dark:border-white/5 p-0"
                                 >
-                                    {/* Sheet header */}
                                     <div className="flex items-center justify-between p-5 border-b border-gray-100 dark:border-white/5">
                                         <Link
                                             href="/"
-                                            className="flex items-center gap-2"
                                             onClick={() => setIsOpen(false)}
                                         >
-                                            <Code2 className="w-5 h-5 text-[var(--purple)] dark:text-[var(--lime)]" />
-                                            <span className="font-semibold text-gray-900 dark:text-white font-neopixel">
-                                                KuberCode
-                                            </span>
+                                            <Logo
+                                                className="gap-2"
+                                                iconClassName="w-5 h-5"
+                                            />
                                         </Link>
                                     </div>
 
-                                    {/* Nav links */}
                                     <nav className="flex flex-col p-4 gap-1">
                                         {NAV_ITEMS.map((item) => {
-                                            const isActive = item.href === "/";
-                                            // ? pathname === "/"
-                                            // : pathname.startsWith(
-                                            //       item.href,
-                                            //   );
+                                            const isActive = isNavActive(
+                                                pathname,
+                                                item,
+                                            );
+                                            const className = cn(
+                                                "px-4 py-3 rounded-xl text-base font-medium transition-all",
+                                                isActive
+                                                    ? "text-[var(--purple)] bg-[var(--purple)]/10 dark:text-[var(--lime)] dark:bg-[var(--lime)]/10"
+                                                    : "text-gray-700 dark:text-white/70 hover:bg-gray-100 dark:hover:bg-white/5",
+                                            );
+
+                                            if (item.kind === "soon") {
+                                                return (
+                                                    <a
+                                                        key={item.label}
+                                                        href="#"
+                                                        title="Скоро"
+                                                        aria-disabled="true"
+                                                        onClick={(event) => {
+                                                            handleSoonClick(
+                                                                event,
+                                                            );
+                                                            setIsOpen(false);
+                                                        }}
+                                                        className={className}
+                                                    >
+                                                        {item.label}
+                                                    </a>
+                                                );
+                                            }
+
+                                            if (item.kind === "anchor") {
+                                                return (
+                                                    <a
+                                                        key={item.label}
+                                                        href={item.href}
+                                                        onClick={() =>
+                                                            setIsOpen(false)
+                                                        }
+                                                        className={className}
+                                                    >
+                                                        {item.label}
+                                                    </a>
+                                                );
+                                            }
+
                                             return (
                                                 <Link
                                                     key={item.href}
@@ -193,12 +206,7 @@ export const Header: React.FC<Props> = ({ className }) => {
                                                     onClick={() =>
                                                         setIsOpen(false)
                                                     }
-                                                    className={cn(
-                                                        "px-4 py-3 rounded-xl text-base font-medium transition-all",
-                                                        isActive
-                                                            ? "text-[var(--purple)] bg-[var(--purple)]/10 dark:text-[var(--lime)] dark:bg-[var(--lime)]/10"
-                                                            : "text-gray-700 dark:text-white/70 hover:bg-gray-100 dark:hover:bg-white/5",
-                                                    )}
+                                                    className={className}
                                                 >
                                                     {item.label}
                                                 </Link>
@@ -206,16 +214,15 @@ export const Header: React.FC<Props> = ({ className }) => {
                                         })}
                                     </nav>
 
-                                    {/* Mobile CTA */}
                                     <div className="absolute bottom-0 left-0 right-0 p-4 border-t border-gray-100 dark:border-white/5">
-                                        <Link
-                                            href="/tracks"
+                                        <a
+                                            href="#tracks"
                                             onClick={() => setIsOpen(false)}
                                         >
                                             <Button className="w-full rounded-xl bg-[var(--purple)] dark:bg-[var(--lime)] text-white dark:text-black hover:opacity-90">
                                                 Начать обучение
                                             </Button>
-                                        </Link>
+                                        </a>
                                     </div>
                                 </SheetContent>
                             </Sheet>

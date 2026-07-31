@@ -1,3 +1,7 @@
+"use client";
+
+"use client";
+
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { Cookie, Settings, Shield, Sparkles, X } from "lucide-react";
@@ -119,9 +123,9 @@ export const CookieConsent = () => {
             className="fixed inset-x-4 bottom-4 z-50 sm:left-auto sm:right-4 sm:inset-x-auto"
         >
             <Card className="relative mx-auto max-w-[460px] overflow-hidden rounded-[28px] border border-white/60 bg-white/78 px-0 py-0 shadow-[0_24px_70px_rgba(19,18,27,0.18)] backdrop-blur-2xl dark:border-white/10 dark:bg-[var(--bg-color-dark)]/75">
-                <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(137,72,255,0.18),transparent_38%),radial-gradient(circle_at_bottom_right,rgba(206,255,26,0.16),transparent_32%)]" />
-                <div className="absolute -right-10 -top-10 h-28 w-28 rounded-full bg-[var(--purple)]/20 blur-3xl" />
-                <div className="absolute -bottom-8 -left-8 h-24 w-24 rounded-full bg-[var(--lime)]/20 blur-3xl" />
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(137,72,255,0.18),transparent_38%),radial-gradient(circle_at_bottom_right,rgba(137,72,255,0.18),transparent_32%)] dark:bg-[radial-gradient(circle_at_top_left,rgba(206,255,26,0.16),transparent_38%),radial-gradient(circle_at_bottom_right,rgba(206,255,26,0.16),transparent_32%)]" />
+                <div className="absolute -right-10 -top-10 h-28 w-28 rounded-full bg-[var(--purple)]/20 dark:bg-[var(--lime)]/20 blur-3xl" />
+                <div className="absolute -bottom-8 -left-8 h-24 w-24 rounded-full bg-[var(--purple)]/20 dark:bg-[var(--lime)]/20 blur-3xl" />
 
                 <CardHeader className="relative flex flex-row items-start justify-between gap-3 px-4 pt-4 sm:px-5 sm:pt-5">
                     <div className="flex items-center gap-3">
