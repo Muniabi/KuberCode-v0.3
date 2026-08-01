@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { ArrowRight, Code2, Zap } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { APP_URL } from "@/lib/app-url";
 
 export function HeroNew() {
     return (
@@ -53,7 +54,7 @@ export function HeroNew() {
                             asChild
                             className="h-14 px-8 rounded-2xl bg-[var(--purple)] hover:bg-[var(--purple)]/90 dark:bg-[var(--lime)] dark:hover:bg-white dark:text-black dark:hover:text-black text-white text-base font-semibold gap-2 transition-all duration-400 hover:-translate-y-1"
                         >
-                            <a href="#tracks">
+                            <a href={`${APP_URL}/register`}>
                                 Начать обучение
                                 <ArrowRight className="w-4 h-4" />
                             </a>

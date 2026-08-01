@@ -10,6 +10,7 @@ import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Menu } from "lucide-react";
 import { Logo } from "@/components/ui/Logo";
+import { APP_URL } from "@/lib/app-url";
 
 const NAV_ITEMS = [
     { href: "/", label: "Главная", kind: "route" as const },
@@ -115,11 +116,10 @@ export const Header: React.FC<Props> = ({ className }) => {
                     <div className="flex items-center gap-2">
                         <div className="hidden md:flex items-center gap-2">
                             <Button
-                                type="button"
-                                title="Скоро"
+                                asChild
                                 className="text-[var(--purple)] bg-[var(--purple)]/20 dark:text-[var(--lime)] dark:bg-[var(--lime)]/20"
                             >
-                                Вход
+                                <a href={`${APP_URL}/login`}>Вход</a>
                             </Button>
                             <ThemeToggle />
                         </div>
@@ -214,11 +214,16 @@ export const Header: React.FC<Props> = ({ className }) => {
                                         })}
                                     </nav>
 
-                                    <div className="absolute bottom-0 left-0 right-0 p-4 border-t border-gray-100 dark:border-white/5">
-                                        <a
-                                            href="#tracks"
-                                            onClick={() => setIsOpen(false)}
-                                        >
+                                    <div className="absolute bottom-0 left-0 right-0 p-4 border-t border-gray-100 dark:border-white/5 space-y-2">
+                                        <a href={`${APP_URL}/login`}>
+                                            <Button
+                                                variant="outline"
+                                                className="w-full rounded-xl"
+                                            >
+                                                Вход
+                                            </Button>
+                                        </a>
+                                        <a href={`${APP_URL}/register`}>
                                             <Button className="w-full rounded-xl bg-[var(--purple)] dark:bg-[var(--lime)] text-white dark:text-black hover:opacity-90">
                                                 Начать обучение
                                             </Button>
