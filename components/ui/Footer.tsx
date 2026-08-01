@@ -6,10 +6,10 @@ import Image from "next/image";
 import { Logo } from "@/components/ui/Logo";
 
 const LEARN_LINKS = [
-    { href: "#tracks", label: "Треки обучения", kind: "anchor" as const },
+    { href: "/tracks", label: "Треки обучения", kind: "route" as const },
     { href: "#", label: "Менторы", kind: "soon" as const },
     {
-        href: "#how-it-works",
+        href: "/#how-it-works",
         label: "Как это работает",
         kind: "anchor" as const,
     },
@@ -32,7 +32,7 @@ export function Footer() {
     const renderLink = (link: {
         href: string;
         label: string;
-        kind: "anchor" | "soon";
+        kind: "anchor" | "soon" | "route";
     }) => {
         const className =
             "text-sm text-gray-600 dark:text-white/50 hover:text-gray-900 dark:hover:text-white transition-colors";
@@ -48,6 +48,14 @@ export function Footer() {
                 >
                     {link.label}
                 </a>
+            );
+        }
+
+        if (link.kind === "route") {
+            return (
+                <Link href={link.href} className={className}>
+                    {link.label}
+                </Link>
             );
         }
 

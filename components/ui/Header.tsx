@@ -14,7 +14,7 @@ import { APP_URL } from "@/lib/app-url";
 
 const NAV_ITEMS = [
     { href: "/", label: "Главная", kind: "route" as const },
-    { href: "#tracks", label: "Треки", kind: "anchor" as const },
+    { href: "/tracks", label: "Треки", kind: "route" as const },
     { href: "#", label: "Менторы", kind: "soon" as const },
 ];
 
@@ -82,18 +82,6 @@ export const Header: React.FC<Props> = ({ className }) => {
                                         title="Скоро"
                                         aria-disabled="true"
                                         onClick={handleSoonClick}
-                                        className={className}
-                                    >
-                                        {item.label}
-                                    </a>
-                                );
-                            }
-
-                            if (item.kind === "anchor") {
-                                return (
-                                    <a
-                                        key={item.label}
-                                        href={item.href}
                                         className={className}
                                     >
                                         {item.label}
@@ -177,21 +165,6 @@ export const Header: React.FC<Props> = ({ className }) => {
                                                             );
                                                             setIsOpen(false);
                                                         }}
-                                                        className={className}
-                                                    >
-                                                        {item.label}
-                                                    </a>
-                                                );
-                                            }
-
-                                            if (item.kind === "anchor") {
-                                                return (
-                                                    <a
-                                                        key={item.label}
-                                                        href={item.href}
-                                                        onClick={() =>
-                                                            setIsOpen(false)
-                                                        }
                                                         className={className}
                                                     >
                                                         {item.label}

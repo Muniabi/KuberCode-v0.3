@@ -1,22 +1,10 @@
 "use client";
 
-"use client";
-
 import { motion } from "framer-motion";
 import { ArrowRight, Layers } from "lucide-react";
+import Link from "next/link";
 import { TRACKS } from "@/data/tracks";
-
-const DIFFICULTY_LABEL: Record<string, string> = {
-    beginner: "Начальный",
-    intermediate: "Средний",
-    advanced: "Продвинутый",
-};
-
-const DIFFICULTY_COLOR: Record<string, string> = {
-    beginner: "text-green-400 bg-green-400/10 border-green-400/20",
-    intermediate: "text-yellow-400 bg-yellow-400/10 border-yellow-400/20",
-    advanced: "text-red-400 bg-red-400/10 border-red-400/20",
-};
+import { DifficultyLights } from "@/components/ui/DifficultyLights";
 
 export function TracksPreview() {
     return (
@@ -44,13 +32,13 @@ export function TracksPreview() {
                             Структурированные пути от основ до продвинутых тем
                         </p>
                     </div>
-                    <a
-                        href="#tracks"
+                    <Link
+                        href="/tracks"
                         className="flex items-center gap-2 text-[var(--purple)] dark:text-[var(--lime)] font-medium hover:gap-3 transition-all text-sm shrink-0"
                     >
                         Все треки
                         <ArrowRight className="w-4 h-4" />
-                    </a>
+                    </Link>
                 </motion.div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -63,7 +51,7 @@ export function TracksPreview() {
                             transition={{ duration: 0.4, delay: i * 0.05 }}
                         >
                             <div
-                                className="group relative h-full rounded-2xl border border-gray-100 dark:border-white/5 bg-gray-50 dark:bg-white/[0.02] hover:border-[var(--purple)]/30 dark:hover:border-[var(--lime)]/20 hover:bg-gray-100 dark:hover:bg-white/[0.04] transition-all duration-200 p-5 overflow-hidden"
+                                className={`group relative h-full rounded-2xl border border-gray-100 dark:border-white/5 bg-gray-50 dark:bg-white/[0.02] ${track.border} hover:bg-gray-100 dark:hover:bg-white/[0.04] transition-all duration-200 p-5 overflow-hidden`}
                                 title="Скоро"
                             >
                                 <div
@@ -96,15 +84,10 @@ export function TracksPreview() {
                                         <span className="text-xs text-gray-400 dark:text-white/30">
                                             {track.exerciseCount} упражнений
                                         </span>
-                                        <span
-                                            className={`text-xs px-2 py-0.5 rounded-full border ${DIFFICULTY_COLOR[track.difficulty]}`}
-                                        >
-                                            {
-                                                DIFFICULTY_LABEL[
-                                                    track.difficulty
-                                                ]
-                                            }
-                                        </span>
+                                        <DifficultyLights
+                                            difficulty={track.difficulty}
+                                            size="sm"
+                                        />
                                     </div>
                                 </div>
                             </div>

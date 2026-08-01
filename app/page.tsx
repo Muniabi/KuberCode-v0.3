@@ -5,6 +5,7 @@ import { ExercisePreview } from "@/components/ui/shared/exercise-preview";
 import { SocialProof } from "@/components/ui/shared/social-proof";
 import { LandingCTA } from "@/components/ui/shared/landing-cta";
 import { CookieConsent } from "@/components/ui/CookieConsent";
+import { MascotEasterEggs } from "@/components/ui/MascotEasterEggs";
 
 export default function Home() {
     return (
@@ -16,6 +17,7 @@ export default function Home() {
             <SocialProof />
             <LandingCTA />
             <CookieConsent />
+            <MascotEasterEggs />
         </main>
     );
 }
