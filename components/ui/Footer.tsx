@@ -7,7 +7,7 @@ import { Logo } from "@/components/ui/Logo";
 
 const LEARN_LINKS = [
     { href: "/tracks", label: "Треки обучения", kind: "route" as const },
-    { href: "#", label: "Менторы", kind: "soon" as const },
+    { href: "/mentors", label: "Менторы", kind: "route" as const },
     {
         href: "/#how-it-works",
         label: "Как это работает",

@@ -15,7 +15,7 @@ import { APP_URL } from "@/lib/app-url";
 const NAV_ITEMS = [
     { href: "/", label: "Главная", kind: "route" as const },
     { href: "/tracks", label: "Треки", kind: "route" as const },
-    { href: "#", label: "Менторы", kind: "soon" as const },
+    { href: "/mentors", label: "Менторы", kind: "route" as const },
 ];
 
 interface Props {
@@ -26,7 +26,6 @@ function isNavActive(
     pathname: string,
     item: (typeof NAV_ITEMS)[number],
 ): boolean {
-    if (item.kind !== "route") return false;
     if (item.href === "/") return pathname === "/";
     return pathname === item.href || pathname.startsWith(`${item.href}/`);
 }
@@ -41,12 +40,6 @@ export const Header: React.FC<Props> = ({ className }) => {
         window.addEventListener("scroll", handleScroll, { passive: true });
         return () => window.removeEventListener("scroll", handleScroll);
     }, []);
-
-    const handleSoonClick = (
-        event: React.MouseEvent<HTMLAnchorElement>,
-    ) => {
-        event.preventDefault();
-    };
 
     return (
         <header
@@ -73,21 +66,6 @@ export const Header: React.FC<Props> = ({ className }) => {
                                     ? "text-[var(--purple)] bg-[var(--purple)]/10 dark:text-[var(--lime)] dark:bg-[var(--lime)]/10"
                                     : "text-gray-600 dark:text-white/60 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-white/5",
                             );
-
-                            if (item.kind === "soon") {
-                                return (
-                                    <a
-                                        key={item.label}
-                                        href="#"
-                                        title="Скоро"
-                                        aria-disabled="true"
-                                        onClick={handleSoonClick}
-                                        className={className}
-                                    >
-                                        {item.label}
-                                    </a>
-                                );
-                            }
 
                             return (
                                 <Link
@@ -151,26 +129,6 @@ export const Header: React.FC<Props> = ({ className }) => {
                                                     ? "text-[var(--purple)] bg-[var(--purple)]/10 dark:text-[var(--lime)] dark:bg-[var(--lime)]/10"
                                                     : "text-gray-700 dark:text-white/70 hover:bg-gray-100 dark:hover:bg-white/5",
                                             );
-
-                                            if (item.kind === "soon") {
-                                                return (
-                                                    <a
-                                                        key={item.label}
-                                                        href="#"
-                                                        title="Скоро"
-                                                        aria-disabled="true"
-                                                        onClick={(event) => {
-                                                            handleSoonClick(
-                                                                event,
-                                                            );
-                                                            setIsOpen(false);
-                                                        }}
-                                                        className={className}
-                                                    >
-                                                        {item.label}
-                                                    </a>
-                                                );
-                                            }
 
                                             return (
                                                 <Link
