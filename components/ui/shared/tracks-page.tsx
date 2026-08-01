@@ -2,11 +2,19 @@
 
 import { motion } from "framer-motion";
 import { Layers } from "lucide-react";
-import { TRACKS } from "@/data/tracks";
+import { useEffect, useState } from "react";
+import type { Track } from "@/data/tracks";
 import { DifficultyLights } from "@/components/ui/DifficultyLights";
 import { APP_URL } from "@/lib/app-url";
+import { fetchTracks } from "@/lib/tracks-api";
 
 export function TracksPageContent() {
+    const [tracks, setTracks] = useState<Track[]>([]);
+
+    useEffect(() => {
+        void fetchTracks().then(setTracks);
+    }, []);
+
     return (
         <section className="py-16 sm:py-24 min-h-[70vh]">
             <div className="max-w-6xl mx-auto px-6">
@@ -30,7 +38,7 @@ export function TracksPageContent() {
                 </motion.div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 lg:gap-6">
-                    {TRACKS.map((track, i) => (
+                    {tracks.map((track, i) => (
                         <motion.a
                             key={track.id}
                             href={`${APP_URL}/register`}

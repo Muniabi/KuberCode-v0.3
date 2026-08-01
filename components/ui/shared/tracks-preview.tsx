@@ -3,10 +3,18 @@
 import { motion } from "framer-motion";
 import { ArrowRight, Layers } from "lucide-react";
 import Link from "next/link";
-import { TRACKS } from "@/data/tracks";
+import { useEffect, useState } from "react";
+import type { Track } from "@/data/tracks";
 import { DifficultyLights } from "@/components/ui/DifficultyLights";
+import { fetchTracks } from "@/lib/tracks-api";
 
 export function TracksPreview() {
+    const [tracks, setTracks] = useState<Track[]>([]);
+
+    useEffect(() => {
+        void fetchTracks().then(setTracks);
+    }, []);
+
     return (
         <section
             id="tracks"
@@ -42,7 +50,7 @@ export function TracksPreview() {
                 </motion.div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                    {TRACKS.map((track, i) => (
+                    {tracks.map((track, i) => (
                         <motion.div
                             key={track.id}
                             initial={{ opacity: 0, y: 24 }}
