@@ -1,5 +1,5 @@
 import { TRACKS, type Track } from "@/data/tracks";
-import { API_URL } from "@/lib/config";
+import { INTERNAL_API_URL } from "@/lib/config";
 
 type ApiTrack = {
   id: string;
@@ -35,7 +35,9 @@ function mapTrack(t: ApiTrack): Track {
 
 export async function fetchTracks(): Promise<Track[]> {
   try {
-    const res = await fetch(`${API_URL}/v1/tracks`, { next: { revalidate: 30 } });
+    const res = await fetch(`${INTERNAL_API_URL}/v1/tracks`, {
+      next: { revalidate: 30 },
+    });
     if (!res.ok) throw new Error("failed");
     const data = (await res.json()) as { items: ApiTrack[] };
     const items = (data.items ?? []).map(mapTrack);
